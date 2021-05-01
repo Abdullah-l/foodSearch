@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    background-color: #B0C4DE;
+  }
+  .jumbotron {
+    background-color: #B0C4DE;
+    color: #fff;
+    padding: 50px 25px;
+    font-family: Montserrat, sans-serif;
+  }
+  </style>
+
+
+<div class="jumbotron text-center">
+  <h1>Food Search</h1><br>
+  <h4 class="mb-5">Find your craving</h4> 
+
+  <a style="color: #fff;" href="{% url 'foodS' %}" class="btn btn-info" role="button"">Search by Food Item</a>
+  <a style="color: #fff;" href="{% url 'restaurantS' %}" class="btn btn-info" role="button"">Search by Restaurant</a>
+  <a style="color: #fff;" href="{% url 'cuisineS' %}" class="btn btn-info" role="button"">Search by Cuisine</a>
+  
+  <form action="{% url 'restaurantS' %}" method="get">
+    <div class="input-group col-6 mx-auto mt-5">
+      <input type="text" name="q" class="form-control" size="50" placeholder="Search" required>
+      <div class="input-group-btn">
+        <button type="submit" class="btn btn-danger">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+
+    {% for item in result %}
+    <br><br>
+    <p>Restaurant: <a href="{% url 'restaurant' id=item.id %}">{{ item.restaurantName }}</a></p>
+    <p>Rating:  {{ item.stars }}</p>
+   
+    {% endfor %}
+
+  </div>
+
+    {% endblock content %}

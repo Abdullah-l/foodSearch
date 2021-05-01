@@ -1,0 +1,45 @@
+    
+    {% extends "base.html" %}
+    {% block content %}
+    
+    <style>
+      body {
+        font: 400 15px Lato, sans-serif;
+        line-height: 1.8;
+        background-color: #B0C4DE;
+      }
+      .jumbotron {
+        background-color: #B0C4DE;
+        color: #fff;
+        padding: 100px 25px;
+        font-family: Montserrat, sans-serif;
+      }
+      </style>
+    
+    
+    <div class="jumbotron text-center">
+      <h1>Food Search</h1><br>
+      <h4 class="mb-5">Find your craving</h4> 
+
+      <a style="color: #fff;" href="{% url 'foodS' %}" class="btn btn-info" role="button"">Search by Food Item</a>
+      <a style="color: #fff;" href="{% url 'restaurantS' %}" class="btn btn-info" role="button"">Search by Restaurant</a>
+      <a style="color: #fff;" href="{% url 'cuisineS' %}" class="btn btn-info" role="button"">Search by Cuisine</a>
+
+
+    
+    <div class="container">
+
+    {% for item in result %}
+    <br><br>
+    <p>{{ item.menuItemName }}</p>
+    <p>Description: {{ item.description }}</p>
+    <p>Cost: ${{ item.cost }}</p>
+    <p>Restaurant: <a href="{% url 'restaurant' id=item.id %}">{{ item.restaurantName }}</a></p>
+    <p>Rating:  {{ item.stars }}</p>
+
+   
+    {% endfor %}
+
+  </div>
+
+    {% endblock content %}

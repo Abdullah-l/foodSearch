@@ -1,0 +1,42 @@
+    
+    {% extends "base.html" %}
+    {% block content %}
+    
+    <style>
+      body {
+        font: 400 15px Lato, sans-serif;
+        line-height: 1.8;
+        background-color: #B0C4DE;
+      }
+      .jumbotron {
+        background-color: #B0C4DE;
+        color: #fff;
+        padding: 100px 25px;
+        font-family: Montserrat, sans-serif;
+      }
+    
+      </style>
+    
+
+    
+    <div class="container">
+    {% for item in result %}
+
+        {% if forloop.first %} 
+        <br><br>
+        <h1> {{ item.restaurantName }}</h1>
+        <h3>Rating: {{ item.stars }}</h3><br><br>
+        <h1>Menu:</h1>
+
+      {% else %}
+      <br><br>
+    <p>{{ item.menuItemName }}</p>
+    <p>Description: {{ item.description }}</p>
+    <p>Cost: ${{ item.cost }}</p>
+
+    {% endif %}
+    {% endfor %}
+  </div>
+
+
+    {% endblock content %}
